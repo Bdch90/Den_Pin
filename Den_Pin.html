@@ -21,12 +21,12 @@
 
     var FlashLamp = function (battery,status) {
         this.battery= battery;
-        this.status = status;
+        this.status = true;
         this.setBattery = function (battery) {
-            this.battery = battery;
+            return this.battery=battery;
         };
         this.getBatteryInfo = function () {
-            return this.battery.getEnergy();
+            return this.battery;
         };
         this.light = function () {
             if(this.status) {
@@ -45,8 +45,15 @@
     var pin = new Battery()
     pin.setEnergy(10);
     var flashLamp = new FlashLamp();
-    flashLamp.setBattery();
-    alert(flashLamp.getBatteryInfo());
+    flashLamp.setBattery(pin.getEnergy());
+    document.write('Battery info : ' + flashLamp.getBatteryInfo()+'<br>');
+    flashLamp.light();
+    document.write('Turn On<br>');
+    flashLamp.turnOn();
+    flashLamp.light();
+    document.write('Turn Off<br>');
+    flashLamp.turnOff();
+    flashLamp.light();
 </script>
 </body>
 </html>
